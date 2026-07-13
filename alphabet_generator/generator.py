@@ -1,5 +1,6 @@
 import random
 import string
+import json
 
 ## CONSTS:
 ELIGIBLE_SYMBOLS = ['$', '<', '-', '>', '&']
@@ -38,9 +39,14 @@ for i in range (CHARACTERS_TO_CONVERT):
     encoded_letter = encode_letter()
     dictionary [letter_to_encode] = encoded_letter
     code_set.add(encoded_letter)
-     
+    
+with open("alphabet.json", "w") as f:
+    json.dump(dictionary, f, indent=1)#, sort_keys=True)
+
+
+with open("alphabet.json", "r") as f:
+    alphabet = json.load(f)
+
+print(alphabet)
 ##for code in code_set:
 ##   print (code)
-
-for key, value in dictionary .items():
-    print(key, value)
