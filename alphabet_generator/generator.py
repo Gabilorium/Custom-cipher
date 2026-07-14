@@ -1,17 +1,17 @@
 import random
 import string
 import json
+from cipher.rules import ELIGIBLE_SYMBOLS, SEED, SYMBOLS_PER_LETTER
 
 ## CONSTS:
-ELIGIBLE_SYMBOLS = ['$', '<', '-', '>', '&']
 SEED = 42
-SYMBOLS_PER_LETTER = 3
-##LOWERCASE_CHARS = len(string.ascii_lowercase)
-##UPPERCASE_CHARS = len(string.ascii_uppercase)
-LETTERS_COUNT = len(string.ascii_letters) ##LOWERCASE_CHARS + UPPERCASE_CHARS
+SPANISH_CHARS = "áéíóúñüÁÉÍÓÚÑÜ"
+LETTERS_COUNT = len(string.ascii_letters)
 DIGITS_COUNT = len(string.digits)
 PUNCTUATION_COUNT = len(string.punctuation)
-CHARACTERS_TO_CONVERT = LETTERS_COUNT + DIGITS_COUNT + PUNCTUATION_COUNT
+SPANISH_CHARS_COUNT = len(SPANISH_CHARS)
+CHARACTERS_TO_CONVERT_COUNT = LETTERS_COUNT + DIGITS_COUNT + PUNCTUATION_COUNT + SPANISH_CHARS_COUNT
+CHARACTERS_TO_CONVERT = string.ascii_letters + string.digits + string.punctuation + SPANISH_CHARS
 
 
 random.seed(SEED)
@@ -29,24 +29,11 @@ def encode_letter ():
     return encoded_letter
 
 ## """MAIN"""
-for i in range (CHARACTERS_TO_CONVERT):
-    if (i <= (LETTERS_COUNT -1)):
-        letter_to_encode = string.ascii_letters[i]
-    elif ((i > (LETTERS_COUNT -1)) and (i <= ((LETTERS_COUNT + DIGITS_COUNT) -1))):
-        letter_to_encode = string.digits[i-LETTERS_COUNT ]
-    elif ((i > ((CHARACTERS_TO_CONVERT - PUNCTUATION_COUNT) -1)) and (i <= (CHARACTERS_TO_CONVERT -1))):
-        letter_to_encode = string.punctuation[i-(CHARACTERS_TO_CONVERT - PUNCTUATION_COUNT)]
+for i in range (CHARACTERS_TO_CONVERT_COUNT):
+    letter_to_encode = CHARACTERS_TO_CONVERT[i]
     encoded_letter = encode_letter()
     dictionary [letter_to_encode] = encoded_letter
     code_set.add(encoded_letter)
     
-with open("alphabet.json", "w") as f:
-    json.dump(dictionary, f, indent=1)#, sort_keys=True)
-
-
-with open("alphabet.json", "r") as f:
-    alphabet = json.load(f)
-
-print(alphabet)
-##for code in code_set:
-##   print (code)
+with open("alphabet.json", "w", encoding="utf-8") as f:
+    json.dump(dictionary, f, indent=1, ensure_ascii=False)
