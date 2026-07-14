@@ -1,11 +1,10 @@
 import random
 import string
 import json
+from cipher.rules import ELIGIBLE_SYMBOLS, SEED, SYMBOLS_PER_LETTER
 
 ## CONSTS:
-ELIGIBLE_SYMBOLS = ['$', '<', '-', '>', '&']
-SEED = 42
-SYMBOLS_PER_LETTER = 3
+
 ##LOWERCASE_CHARS = len(string.ascii_lowercase)
 ##UPPERCASE_CHARS = len(string.ascii_uppercase)
 LETTERS_COUNT = len(string.ascii_letters) ##LOWERCASE_CHARS + UPPERCASE_CHARS
