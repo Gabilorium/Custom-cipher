@@ -216,3 +216,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Proyecto: alfabeto generado (se regenera con generar_alfabeto.py, no se versiona)
+alphabet.json
