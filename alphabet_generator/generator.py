@@ -1,7 +1,8 @@
 import random
 import string
 import json
-from cipher.rules import ELIGIBLE_SYMBOLS, SEED, SYMBOLS_PER_LETTER
+from pathlib import Path
+from cipher.rules import ELIGIBLE_SYMBOLS, SYMBOLS_PER_LETTER
 
 ## CONSTS:
 SEED = 42
@@ -35,5 +36,5 @@ for i in range (CHARACTERS_TO_CONVERT_COUNT):
     dictionary [letter_to_encode] = encoded_letter
     code_set.add(encoded_letter)
     
-with open("alphabet.json", "w", encoding="utf-8") as f:
+with open(Path(__file__).parent.parent / "alphabet.json", "w", encoding="utf-8") as f:
     json.dump(dictionary, f, indent=1, ensure_ascii=False)

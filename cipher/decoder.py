@@ -1,8 +1,11 @@
 import json
 import sys
+from pathlib import Path
 from cipher.rules import get_separator_length , ELIGIBLE_SYMBOLS
 
-with open("alphabet.json", "r",  encoding="utf-8") as f:
+
+
+with open(Path(__file__).parent.parent / "alphabet.json", "r",  encoding="utf-8") as f:
     alphabet = json.load(f)
 
 ##FUNCTIONS
@@ -28,17 +31,18 @@ def get_msg(code):
 
 
 ## """MAIN"""
-decoded_msg=""
+if __name__ == "__main__":
+    decoded_msg=""
 
-if len(sys.argv) > 1:
-    with open(sys.argv[1], "r", encoding="utf-8") as f:
-        code = f.read()
-    decoded_msg = get_msg(code)
-    print(decoded_msg)
-else: 
-    while True:
-        code = input("Enter the input you want to decode (press Enter with no input to exit): ")
-        if (code == ""):
-            break
+    if len(sys.argv) > 1:
+        with open(sys.argv[1], "r", encoding="utf-8") as f:
+            code = f.read()
         decoded_msg = get_msg(code)
         print(decoded_msg)
+    else: 
+        while True:
+            code = input("Enter the input you want to decode (press Enter with no input to exit): ")
+            if (code == ""):
+                break
+            decoded_msg = get_msg(code)
+            print(decoded_msg)
