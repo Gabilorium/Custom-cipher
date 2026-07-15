@@ -6,7 +6,7 @@ with open("alphabet.json", "r",  encoding="utf-8") as f:
     alphabet = json.load(f)
 
 ##FUNCTIONS
-def get_msg(msg):
+def get_code(msg):
         result=""
         for i in range ((len(msg))):
             if msg[i] in alphabet:
@@ -15,16 +15,20 @@ def get_msg(msg):
                 #print(result)
             else: 
                 result += msg[i]
-        print(result)
+        return result
 
 ## """MAIN"""
+encoded_msg= ""
+
 if len(sys.argv) > 1:
     with open(sys.argv[1], "r", encoding="utf-8") as f:
         msg = f.read()
-    get_msg(msg)
+    encoded_msg = get_code(msg)
+    print(encoded_msg)
 else: 
     while True:
         msg = input("Enter the input you want to encode (press Enter with no input to exit): ")
         if (msg == ""):
             break
-        get_msg(msg)
+        encoded_msg = get_code(msg)
+        print(encoded_msg)

@@ -1,4 +1,5 @@
 import json
+import sys
 from cipher.rules import get_separator_length , ELIGIBLE_SYMBOLS
 
 with open("alphabet.json", "r",  encoding="utf-8") as f:
@@ -11,35 +12,33 @@ def get_letter(alphabet,value):
             return key
     return None
 
-## """MAIN"""
-while True:
-    
-    msg = input("escribi puto:")
-    if msg == "":
-        break
-    #separator_count = get_separator_length(msg)
-    #print(separator_count)
+def get_msg(code): 
     i=0
-    while i < len(msg):
-        if msg[i] in ELIGIBLE_SYMBOLS:
-            separator_count = get_separator_length(msg[i:i+3])
+    result= ""
+    while i < len(code):
+        if code[i] in ELIGIBLE_SYMBOLS:
+            separator_count = get_separator_length(code[i:i+3])
             #print(separator_count)
-            print(get_letter(alphabet,msg[i:i+3]))
+            result += get_letter(alphabet,code[i:i+3])
             i = i + 3 + separator_count
         else:
-            print(msg[i])
+            result += code[i]
             i += 1
+    return result
 
 
-# &><-$$$<->&<-$&><-$&>-$>&< &<&>-$-$>&<&-&>$<<-$>&&>$<- (hello world)
-# &>< = h
-# $$< = e
-# <-$ = l
-# <-$ = l
-# -$> = o
-#  
-# &<& = w
-# -$> = o
-# &-& = r
-# <-$ = l
-# &>$ = d
+## """MAIN"""
+decoded_msg=""
+
+if len(sys.argv) > 1:
+    with open(sys.argv[1], "r", encoding="utf-8") as f:
+        code = f.read()
+    decoded_msg = get_msg(code)
+    print(decoded_msg)
+else: 
+    while True:
+        code = input("Enter the input you want to decode (press Enter with no input to exit): ")
+        if (code == ""):
+            break
+        decoded_msg = get_msg(code)
+        print(decoded_msg)
