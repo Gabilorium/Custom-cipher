@@ -17,3 +17,7 @@ def get_separator(encoded_char):
 
     return separator
 
+def get_separator_length(code):
+    separator = get_separator(code)
+    #print(separator)
+    return len(separator)
