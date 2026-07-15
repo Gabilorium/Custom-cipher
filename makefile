@@ -16,10 +16,10 @@ clean:
 	rm -rf .pytest_cache
 
 encoder: alphabet.json
-	python3 -m cipher.encoder $(FILE)
+	python3 -m cipher.encoder $(if $(FILE),"$(FILE)")
 
 decoder: alphabet.json
-	python3 -m cipher.decoder $(FILE)
+	python3 -m cipher.decoder $(if $(FILE),"$(FILE)")
 
 test: alphabet.json
 	python3 -m pytest -v
