@@ -4,7 +4,7 @@ ELIGIBLE_SYMBOLS = ['$', '<', '-', '>', '&']
 SYMBOLS_PER_LETTER = 3
 
 
-def add_separator(encoded_char):
+def get_separator(encoded_char):
 
     used_symbols = set(encoded_char)
     characters_to_add = set(ELIGIBLE_SYMBOLS) - used_symbols
@@ -15,4 +15,5 @@ def add_separator(encoded_char):
     while character_list:
         separator += character_list.pop()
 
-    return encoded_char + "(" + separator + ")"
+    return separator
+

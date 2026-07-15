@@ -1,6 +1,6 @@
 import json
 import sys
-from cipher.rules import add_separator
+from cipher.rules import get_separator
 
 with open("alphabet.json", "r",  encoding="utf-8") as f:
     alphabet = json.load(f)
@@ -10,7 +10,8 @@ def get_msg(msg):
         result=""
         for i in range ((len(msg))):
             if msg[i] in alphabet:
-                result += add_separator(alphabet[msg[i]])
+                result += alphabet[msg[i]]
+                result += get_separator(alphabet[msg[i]])
                 #print(result)
             else: 
                 result += msg[i]
