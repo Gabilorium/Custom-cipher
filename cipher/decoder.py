@@ -8,7 +8,6 @@ with open(Path(__file__).parent.parent / "alphabet.json", "r",  encoding="utf-8"
     alphabet = json.load(f)
 
 output_dir = Path(__file__).parent.parent / "decoded_texts"
-output_dir.mkdir(parents=True, exist_ok=True)
 
 ##FUNCTIONS
 def get_letter(alphabet,value):
@@ -41,6 +40,7 @@ def get_msg(code):
 
 ## """MAIN"""
 if __name__ == "__main__":
+    output_dir.mkdir(parents=True, exist_ok=True)
     decoded_msg=""
 
     if len(sys.argv) > 1:

@@ -10,7 +10,6 @@ with open(Path(__file__).parent.parent / "alphabet.json", "r",  encoding="utf-8"
     alphabet = json.load(f)
 
 output_dir = Path(__file__).parent.parent / "encoded_texts"
-output_dir.mkdir(parents=True, exist_ok=True)
 
 ##FUNCTIONS
 def get_code(msg):
@@ -26,6 +25,7 @@ def get_code(msg):
 
 ## """MAIN"""
 if __name__ == "__main__":
+    output_dir.mkdir(parents=True, exist_ok=True)
     encoded_msg= ""
 
     if len(sys.argv) > 1:
