@@ -1,4 +1,5 @@
 from pathlib import Path
+import pytest
 from cipher.decoder import get_msg
 
 principal_path = Path(__file__).parent
@@ -8,6 +9,12 @@ def test_basic():
     with open(principal_path / "decoder_tests" / "basic.txt", "r", encoding="utf-8") as f:
         msg_coded = f.read()
     assert get_msg(msg_coded) == "helloworld"
+
+def test_corrupted_raises_system_exit():
+    with open(principal_path / "decoder_tests" / "corrupted.txt", "r", encoding="utf-8") as f:
+        msg_coded = f.read()
+    with pytest.raises(SystemExit):
+        get_msg(msg_coded)
 
 def test_digits_and_punctuation():
     with open(principal_path / "decoder_tests" / "digits_and_punctuation.txt", "r", encoding="utf-8") as f:
@@ -33,6 +40,12 @@ def test_mixed_case():
     with open(principal_path / "decoder_tests" / "mixed_case.txt", "r", encoding="utf-8") as f:
         msg_coded = f.read()
     assert get_msg(msg_coded) == "My friends are CARLOS, Mariela and PENELoPE"
+
+def test_off_limits_raises_system_exit():
+    with open(principal_path / "decoder_tests" / "off_limits.txt", "r", encoding="utf-8") as f:
+        msg_coded = f.read()
+    with pytest.raises(SystemExit):
+        get_msg(msg_coded)
 
 def test_only_whitespace():
     with open(principal_path / "decoder_tests" / "only_whitespace.txt", "r", encoding="utf-8") as f:
