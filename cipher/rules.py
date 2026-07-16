@@ -2,7 +2,7 @@ import random
 
 ELIGIBLE_SYMBOLS = ['$', '<', '-', '>', '&']
 SYMBOLS_PER_LETTER = 3
-
+MAX_FILE_SIZE = 10 * 1024
 
 def get_separator(encoded_char):
 

@@ -2,9 +2,9 @@ import json
 import sys
 from pathlib import Path
 import warnings
-from cipher.rules import get_separator
+from cipher.rules import get_separator, MAX_FILE_SIZE
 
-MAX_FILE_SIZE = 10 * 1024
+
 
 with open(Path(__file__).parent.parent / "alphabet.json", "r",  encoding="utf-8") as f:
     alphabet = json.load(f)
